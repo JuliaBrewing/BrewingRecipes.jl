@@ -1,0 +1,13 @@
+name = "BrewingRecipes"
+uuid = "d92ab36c-5def-4cec-a05e-a9de6a3ce121"
+authors = ["Dave Kleinschmidt <dave.f.kleinschmidt@gmail.com> and contributors"]
+version = "0.1.0"
+
+[compat]
+julia = "1.5"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
