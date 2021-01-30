@@ -1,0 +1,40 @@
+* General design
+
+  Idea is that we have two basic things - parameters/properties and
+  processes/ingredients.  We want to be able to go from processes ->
+  parameters/properties ("recipe calculator") and vice-versa ("recipe
+  builder/optimizer")
+
+  So for mash scheduling, we have a bunch of temperature and running volume
+  targets we want to hit, from that we want to get the temperature and volume of
+  our additions/decoctions.
+
+  I guess it gets a bit complex with the decoction...but then again that's
+  basically a list of properties/states right?  You have 50% separated.
+
+  First thing to do is get the volumes, because you need that to figure out the
+  temperatures...
+
+* mash
+** calculating volumes
+   this one's pretty easy...we're creating a mixture by combining water + other
+   stuff (grist), then later separating out the liquid.  some of the water gets
+   absorbed by the grain and remains behind.
+
+   for a decoction, it can be a bit different (sometimes we're taking some of
+   the grist, too).
+  
+** Calculating temperatures
+   Specific heat capacities - energy required to raise one kg one degreen Kelvin
+   (or Celsius) - SI unit is J / (K kg) - liquid water at 20°C is 4182, grist is
+   [[http://jansson.us/MashPhysics.html]["about 44% that of water"]] (so...1840?)
+
+   When mixing substances, we're basically combining the heat-energy
+   contents...final temp is sum of mass-temp-capacity products, divided by sum of
+   mass-capacity products (final capacity of mixture is mass-weighted average of
+   components)
+
+   Total energy at equilibrium is T_w c_w + T_g c_g + T_v c_v (water, grist,
+   vessel), where c here is the heat capacity (specific heat times mass), and
+   total heat capacity is c_w + c_g + c_v, so divide the two and you have
+   equlibrium temp.  Can easily solve for the others that way...
